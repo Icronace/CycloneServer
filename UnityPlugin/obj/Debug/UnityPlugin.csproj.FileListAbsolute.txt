@@ -1,0 +1,4 @@
+C:\Users\agenos\Desktop\CycloneServer\UnityPlugin\bin\Debug\UnityPlugin.dll
+C:\Users\agenos\Desktop\CycloneServer\UnityPlugin\bin\Debug\UnityPlugin.pdb
+C:\Users\agenos\Desktop\CycloneServer\UnityPlugin\obj\Debug\UnityPlugin.dll
+C:\Users\agenos\Desktop\CycloneServer\UnityPlugin\obj\Debug\UnityPlugin.pdb
