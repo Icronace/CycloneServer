@@ -6,3 +6,7 @@ C:\Users\agenos\Desktop\CycloneServer\Tests\bin\Release\UnityPlugin.pdb
 C:\Users\agenos\Desktop\CycloneServer\Tests\obj\x86\Release\Tests.csprojResolveAssemblyReference.cache
 C:\Users\agenos\Desktop\CycloneServer\Tests\obj\x86\Release\Tests.exe
 C:\Users\agenos\Desktop\CycloneServer\Tests\obj\x86\Release\Tests.pdb
+C:\Users\agenos\Desktop\CycloneServer\Tests\obj\x86\Release\Tests.GroupEditDialog.resources
+C:\Users\agenos\Desktop\CycloneServer\Tests\obj\x86\Release\Tests.Main.resources
+C:\Users\agenos\Desktop\CycloneServer\Tests\obj\x86\Release\Tests.UserEditDialog.resources
+C:\Users\agenos\Desktop\CycloneServer\Tests\obj\x86\Release\Tests.csproj.GenerateResource.Cache
