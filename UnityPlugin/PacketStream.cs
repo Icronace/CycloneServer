@@ -6,13 +6,13 @@ using System.IO;
 
 namespace De.Cyclone.Network
 {
-    public partial class PacketBuffer
+    public partial class PacketStream
     {
         private static Encoding encoding = Encoding.UTF8;
 
         public byte ReadUnsignedByte()
         {
-            int value = stream.ReadByte();
+            int value = Stream.ReadByte();
             if (value == -1) {
                 throw new EndOfStreamException();
             }
@@ -21,7 +21,7 @@ namespace De.Cyclone.Network
 
         public void WriteUnsignedByte(byte value)
         {
-            stream.WriteByte(value);
+            Stream.WriteByte(value);
         }
 
         public new sbyte ReadByte()
@@ -114,6 +114,28 @@ namespace De.Cyclone.Network
         public unsafe void WriteDouble(double value)
         {
             WriteUnsignedLong(*(ulong*)&value);
+        }
+
+        public bool ReadBool()
+        {
+            return ReadUnsignedByte() != 0;
+        }
+
+        public void WriteBool(bool value)
+        {
+            WriteUnsignedByte(value ? (byte) 1 : (byte) 0);
+        }
+
+        public Guid ReadGuid()
+        {
+            var data = new byte[16];
+            Read(data, 0, 16);
+            return new Guid(data);
+        }
+
+        public void WriteGuid(Guid value)
+        {
+            Write(value.ToByteArray(), 0, 16);
         }
 
         public string ReadString()

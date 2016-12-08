@@ -2,3 +2,7 @@ C:\Users\agenos\Desktop\CycloneServer\UnityPlugin\bin\Release\UnityPlugin.dll
 C:\Users\agenos\Desktop\CycloneServer\UnityPlugin\bin\Release\UnityPlugin.pdb
 C:\Users\agenos\Desktop\CycloneServer\UnityPlugin\obj\Release\UnityPlugin.dll
 C:\Users\agenos\Desktop\CycloneServer\UnityPlugin\obj\Release\UnityPlugin.pdb
+C:\Users\agenos\Desktop\CycloneServer\UnityPlugin\obj\Release\UnityPlugin.csprojResolveAssemblyReference.cache
+C:\Users\agenos\Desktop\CycloneServer\UnityPlugin\obj\Release\De.Cyclone.Properties.Resources.resources
+C:\Users\agenos\Desktop\CycloneServer\UnityPlugin\obj\Release\UnityPlugin.csproj.GenerateResource.Cache
+C:\Users\agenos\Desktop\CycloneServer\UnityPlugin\bin\Release\BouncyCastle.Crypto.dll

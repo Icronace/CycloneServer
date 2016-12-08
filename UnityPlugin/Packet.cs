@@ -7,93 +7,104 @@ namespace De.Cyclone.Network
 {
     public interface Packet
     {
-        void Read(PacketBuffer buffer);
+        void Read(PacketStream stream);
 
-        void Write(PacketBuffer buffer);
+        void Write(PacketStream stream);
     }
 
     public struct HandshakePacket : Packet
     {
+        public Guid Id;
         public String Host;
         public ushort Port;
         public bool Reconnect;
 
-        public HandshakePacket(String host, ushort port, bool reconnect)
+        public HandshakePacket(Guid id, String host, ushort port, bool reconnect)
         {
+            Id = id;
             Host = host;
             Port = port;
             Reconnect = reconnect;
         }
 
-        public void Read(PacketBuffer buffer)
+        public void Read(PacketStream stream)
         {
-            Host = buffer.ReadString();
-            Port = buffer.ReadUnsignedShort();
+            Id = stream.ReadGuid();
+            Host = stream.ReadString();
+            Port = stream.ReadUnsignedShort();
+            Reconnect = stream.ReadBool();
         }
 
-        public void Write(PacketBuffer buffer)
+        public void Write(PacketStream stream)
         {
-            buffer.WriteString(Host);
-            buffer.WriteUnsignedShort(Port);
+            stream.WriteGuid(Id);
+            stream.WriteString(Host);
+            stream.WriteUnsignedShort(Port);
+            stream.WriteBool(Reconnect);
         }
     }
 
-    public struct EncryptionRequestPacket : Packet
+    public struct AuthenticationRequestPacket : Packet
     {
-        // Modulus, Exponent, Signature
         public byte[] Challenge;
 
-        public EncryptionRequestPacket(byte[] challenge)
+        public AuthenticationRequestPacket(byte[] challenge)
         {
             Challenge = challenge;
         }
 
-        public void Read(PacketBuffer buffer)
+        public void Read(PacketStream stream)
         {
-            Challenge = new byte[buffer.ReadUnsignedInt()];
-            buffer.Read(Challenge, 0, Challenge.Length);
+            var modulus = new byte[stream.ReadUnsignedInt()];
+            stream.Read(modulus, 0, modulus.Length);
+            var exponent = new byte[stream.ReadUnsignedInt()];
+            stream.Read(exponent, 0, exponent.Length);
+            var signature = new byte[stream.ReadUnsignedInt()];
+            stream.Read(signature, 0, signature.Length);
+            Challenge = new byte[stream.ReadUnsignedInt()];
+            stream.Read(Challenge, 0, Challenge.Length);
         }
 
-        public void Write(PacketBuffer buffer)
+        public void Write(PacketStream stream)
         {
-            buffer.Write(Challenge, 0, Challenge.Length);
+            stream.Write(Challenge, 0, Challenge.Length);
         }
     }
 
-    public struct EncryptionResponsePacket : Packet
+    public struct AuthenticationResponsePacket : Packet
     {
-        public byte[] SharedSecret;
+        public byte[] Salt;
         public byte[] Challenge;
 
-        public EncryptionResponsePacket(byte[] sharedSecret, byte[] challenge)
+        public AuthenticationResponsePacket(byte[] salt, byte[] challenge)
         {
-            SharedSecret = sharedSecret;
+            Salt = salt;
             Challenge = challenge;
         }
 
-        public void Read(PacketBuffer buffer)
+        public void Read(PacketStream stream)
         {
-            SharedSecret = new byte[buffer.ReadUnsignedInt()];
-            buffer.Read(SharedSecret, 0, SharedSecret.Length);
-            Challenge = new byte[buffer.ReadUnsignedInt()];
-            buffer.Read(Challenge, 0, Challenge.Length);
+            Salt = new byte[stream.ReadUnsignedInt()];
+            stream.Read(Salt, 0, Salt.Length);
+            Challenge = new byte[stream.ReadUnsignedInt()];
+            stream.Read(Challenge, 0, Challenge.Length);
         }
 
-        public void Write(PacketBuffer buffer)
+        public void Write(PacketStream stream)
         {
-            buffer.Write(SharedSecret, 0, SharedSecret.Length);
-            buffer.Write(Challenge, 0, Challenge.Length);
+            stream.Write(Salt, 0, Salt.Length);
+            stream.Write(Challenge, 0, Challenge.Length);
         }
     }
 
-    public struct AuthenticationPacket : Packet
+    public struct AuthenticationFinalPacket : Packet
     {
-        public void Read(PacketBuffer buffer)
+        public void Read(PacketStream stream)
         {
 
         }
 
-        public void Write(PacketBuffer buffer)
+        public void Write(PacketStream stream)
         {
 
         }

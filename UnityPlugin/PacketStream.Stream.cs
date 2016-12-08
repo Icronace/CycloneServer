@@ -6,64 +6,64 @@ using System.IO;
 
 namespace De.Cyclone.Network
 {
-    public partial class PacketBuffer : Stream
+    public partial class PacketStream : Stream
     {
-        private Stream stream;
+        public Stream Stream { get; set; }
 
-        public PacketBuffer(Stream stream)
+        public PacketStream(Stream Stream)
         {
-            this.stream = stream;
+            this.Stream = Stream;
         }
 
         public override bool CanRead
         {
-            get { return stream.CanRead; }
+            get { return Stream.CanRead; }
         }
 
         public override bool CanSeek
         {
-            get { return stream.CanSeek; }
+            get { return Stream.CanSeek; }
         }
 
         public override bool CanWrite
         {
-            get { return stream.CanWrite; }
+            get { return Stream.CanWrite; }
         }
 
         public override long Length
         {
-            get { return stream.Length; }
+            get { return Stream.Length; }
         }
 
         public override long Position
         {
-            get { return stream.Length; }
-            set { stream.Position = value; }
+            get { return Stream.Length; }
+            set { Stream.Position = value; }
         }
 
         public override void Flush()
         {
-            stream.Flush();
+            Stream.Flush();
         }
 
         public override int Read(byte[] buffer, int offset, int count)
         {
-            return stream.Read(buffer, offset, count);
+            return Stream.Read(buffer, offset, count);
         }
 
         public override long Seek(long offset, SeekOrigin origin)
         {
-            return stream.Seek(offset, origin);
+            return Stream.Seek(offset, origin);
         }
 
         public override void SetLength(long value)
         {
-            stream.SetLength(value);
+            Stream.SetLength(value);
         }
 
         public override void Write(byte[] buffer, int offset, int count)
         {
-            stream.Write(buffer, offset, count);
+            Stream.Write(buffer, offset, count);
         }
     }
 }
