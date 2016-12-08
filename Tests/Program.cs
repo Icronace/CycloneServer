@@ -10,8 +10,8 @@ namespace Tests
     class Program
     {
         static void Main(string[] args)
-        {
-            var baso = new MemoryStream();
+        {/****
+            varbaso = new MemoryStream();
             var key = new byte[] { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15 };
             var basocrypt = new AesStream(baso, key);
             var plaintext = Encoding.UTF8.GetBytes("Meine Güte");
@@ -22,7 +22,8 @@ namespace Tests
             basodecrypt.Read(decry, 0, decry.Length);
             Console.Out.WriteLine(Encoding.UTF8.GetString(plaintext));
             Console.Out.WriteLine(Encoding.UTF8.GetString(decry));
-            Console.In.Read();
+            Console.In.Read();*/
+
         }
     }
 }

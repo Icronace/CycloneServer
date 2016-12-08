@@ -24,7 +24,7 @@ namespace De.Cyclone.Network
             encryptCipher = new BufferedBlockCipher(new CfbBlockCipher(new AesFastEngine(), 8));
             encryptCipher.Init(true, new ParametersWithIV(new KeyParameter(Key), Key, 0, Key.Length));
             decryptCipher = new BufferedBlockCipher(new CfbBlockCipher(new AesFastEngine(), 8));
-            decryptCipher.Init(true, new ParametersWithIV(new KeyParameter(Key), Key, 0, Key.Length));
+            decryptCipher.Init(false, new ParametersWithIV(new KeyParameter(Key), Key, 0, Key.Length));
         }
 
         public override bool CanRead
